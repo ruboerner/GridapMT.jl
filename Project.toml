@@ -1,0 +1,4 @@
+name = "GridapMT"
+uuid = "a22cab44-cba4-4898-8a46-7f2023f8934b"
+authors = ["Ralph-Uwe Börner <rub@geophysik.tu-freiberg.de>"]
+version = "0.1.0"
