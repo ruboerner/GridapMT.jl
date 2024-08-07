@@ -2,3 +2,8 @@ name = "GridapMT"
 uuid = "a22cab44-cba4-4898-8a46-7f2023f8934b"
 authors = ["Ralph-Uwe Börner <rub@geophysik.tu-freiberg.de>"]
 version = "0.1.0"
+
+[deps]
+Gridap = "56d4f2e9-7ea1-5844-9cf6-b9c51ca7ce8e"
+GridapGmsh = "3025c34a-b394-11e9-2a55-3fee550c04c8"
+JLD2 = "033835bb-8acc-5ee8-8aae-3f567f8a3819"
