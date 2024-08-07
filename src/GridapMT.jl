@@ -2,11 +2,11 @@ module GridapMT
 
 using Gridap
 import Gridap: solve
+using Gridap.Fields
 
 using GridapGmsh
 import GridapGmsh: gmsh
 
-using Gridap.Fields
 using Gridap.Geometry
 using Gridap.CellData
 using Gridap.Visualization
@@ -42,7 +42,9 @@ include("fem.jl")
 include("solve.jl")
 include("grid.jl")
 
-export loadModel, PrismGenerator
+export MT, FEProblem, TensorGrid
+
+export loadModel, PrismGenerator, gmsh
 export dirichlet_hom_E, dirichlet_hom_H
 export FE_setup
 export createTensorGrid, createGrid, interpolate_grid_to_fe_space

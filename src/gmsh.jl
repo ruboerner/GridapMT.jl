@@ -1,8 +1,9 @@
-function PrismGenerator(L, H, x, lx, z, lz, lc, filename)
+function PrismGenerator(L, H, x, lx, z, lz, lc, filename; 
+    radius=2000.0, xaxis=2500.0, vin=250.0, vout=1000.0, meshAlgorithm=6)
 
     gmsh.initialize()
     gmsh.option.setNumber("General.Terminal", 0)
-    gmsh.option.setNumber("Mesh.Algorithm", 6)
+    gmsh.option.setNumber("Mesh.Algorithm", meshAlgorithm)
     gmsh.clear()
     gmsh.model.add("geometry")
 
@@ -59,16 +60,15 @@ function PrismGenerator(L, H, x, lx, z, lz, lc, filename)
 
     gmsh.model.geo.synchronize()
 
-
-	# (dim=1, [lines], number)
-    gmsh.model.addPhysicalGroup(1, [1, 2, 3, 4, 5, 6], 1)
-    gmsh.model.setPhysicalName(1, 1, "Dirichlet")
-
-	# (dim=0, [points], number)
+    # (dim=0, [points], number)
     gmsh.model.addPhysicalGroup(0, [1, 2, 3, 4, 5, 6], 2)
     gmsh.model.setPhysicalName(0, 2, "Dirichlet_Nodes")
 
-	# (dim=2, [planesurface], number)
+    # (dim=1, [lines], number)
+    gmsh.model.addPhysicalGroup(1, [1, 2, 3, 4, 5, 6], 1)
+    gmsh.model.setPhysicalName(1, 1, "Dirichlet")
+
+    # (dim=2, [planesurface], number)
     gmsh.model.addPhysicalGroup(2, [2], 3)
     gmsh.model.setPhysicalName(2, 3, "Earth")
 
@@ -83,10 +83,10 @@ function PrismGenerator(L, H, x, lx, z, lz, lc, filename)
 	# Local refinement: Place cylinder axis at (0,0)
 	# Given: Radius, Vin, Vout
     gmsh.model.mesh.field.add("Cylinder", 1)	
-    gmsh.model.mesh.field.setNumber(1, "Radius", 2 * lc)
-    gmsh.model.mesh.field.setNumber(1, "VIn", lc / 16)
-    gmsh.model.mesh.field.setNumber(1, "VOut", lc)
-    gmsh.model.mesh.field.setNumber(1, "XAxis", L / 10)
+    gmsh.model.mesh.field.setNumber(1, "Radius", radius)
+    gmsh.model.mesh.field.setNumber(1, "VIn", vin)
+    gmsh.model.mesh.field.setNumber(1, "VOut", vout)
+    gmsh.model.mesh.field.setNumber(1, "XAxis", xaxis)
     gmsh.model.mesh.field.setNumber(1, "XCenter", 0)
     gmsh.model.mesh.field.setNumber(1, "YCenter", 0)
     gmsh.model.mesh.field.setNumber(1, "ZAxis", 0)

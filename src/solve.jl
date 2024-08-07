@@ -28,7 +28,7 @@ function solve_eh(freq, spaces, maps, σ₀)
 	return uh_e, uh_h
 end
 
-function solve_e(freq, spaces, maps,σ₀)
+function solve_e(freq, spaces, maps, σ₀)
     Vₑ, dΩ = spaces
 	σ_field = maps
 	iω = im * 2 * pi * freq
