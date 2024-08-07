@@ -30,6 +30,9 @@ mutable struct FEProblem
     V₀
     Ω
     dΩ
+end
+
+mutable struct ParameterFields
     σ::FEFunction
     ρ::FEFunction
 end
@@ -42,7 +45,7 @@ include("fem.jl")
 include("solve.jl")
 include("grid.jl")
 
-export MT, FEProblem, TensorGrid
+export MT, FEProblem, ParameterFields, TensorGrid
 
 export loadModel, PrismGenerator, gmsh
 export dirichlet_hom_E, dirichlet_hom_H

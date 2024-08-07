@@ -28,6 +28,37 @@ function solve_eh(freq, spaces, maps, σ₀)
 	return uh_e, uh_h
 end
 
+function solve_eh(freq::Float64, container::FEProblem, maps::ParameterFields, σ₀)
+	(Vₑ, Vₕ, dΩ) = (container.Vₑ, container.Vₕ, container.dΩ)
+	(σ_field, ρ_field) = (maps.σ, maps.ρ)
+	iω = im * 2 * pi * freq
+	μ₀ = pi * 4e-7
+	
+	g(x) = -dirichlet_hom_E(freq, σ₀, x[2])
+	h(x) = dirichlet_hom_H(freq, σ₀, x[2])
+	
+	Uₑ = TrialFESpace(Vₑ, [g, g])
+	Uₕ = TrialFESpace(Vₕ, [h, h, h])
+
+	# bilinear forms
+	ae(u, v) = ∫( ∇(v) ⋅ ∇(u) / μ₀ + iω * (σ_field * v) * u ) * dΩ
+	ah(u, v) = ∫( ρ_field * ∇(v) ⋅ ∇(u) + iω * μ₀ * v * u ) * dΩ
+
+    # linear form
+	b(v) = 0
+	
+	# linear FE operators
+    op_e = AffineFEOperator(ae, b, Uₑ, Vₑ)
+    op_h = AffineFEOperator(ah, b, Uₕ, Vₕ)
+
+    # solve for E- and H-pol
+    uh_e = solve(op_e)
+    uh_h = solve(op_h)
+		
+	return uh_e, uh_h
+end
+
+
 function solve_e(freq, spaces, maps, σ₀)
     Vₑ, dΩ = spaces
 	σ_field = maps

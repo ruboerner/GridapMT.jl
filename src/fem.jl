@@ -18,6 +18,6 @@ function FE_setup(;model=model, order=2)
 	reffe_0 = ReferenceFE(lagrangian, Float64, 0)
 	V₀ = TestFESpace(model, reffe_0)
 
-	return Vₑ, Vₕ, Ω, dΩ, V₀
+	return FEProblem(order, Vₑ, Vₕ, V₀, Ω, dΩ )
 end
 

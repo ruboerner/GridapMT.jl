@@ -61,7 +61,7 @@ function interpolate_grid_to_fe_space(
 	σ_field = Gridap.interpolate(x -> σ_interp(x, grid, xi, yi), U)
 	ρ_field = Gridap.interpolate(x -> 1.0 / σ_interp(x, grid, xi, yi), U)
 	
-	return (σ_field, ρ_field)
+	return ParameterFields(σ_field, ρ_field)
 end
 
 function interpolate_grid_to_fe_space(grid::TensorGrid, σ₀::Float64, U::FESpace)
@@ -77,5 +77,5 @@ function interpolate_grid_to_fe_space(grid::TensorGrid, σ₀::Float64, U::FESpa
 	σ_field = Gridap.interpolate(x -> σ_interp(x, grid), U)
 	ρ_field = Gridap.interpolate(x -> 1.0 / σ_interp(x, grid), U)
 	
-	return (σ_field, ρ_field)
+	return ParameterFields(σ_field, ρ_field)
 end
