@@ -42,5 +42,12 @@ include("fem.jl")
 include("solve.jl")
 include("grid.jl")
 
+export loadModel, PrismGenerator
+export dirichlet_hom_E, dirichlet_hom_H
+export FE_setup
+export createTensorGrid, createGrid, interpolate_grid_to_fe_space
+export get_rhoa_phase
+export solve_eh, solve_e, solve_h
+
 
 end # module GridapMT
