@@ -1,5 +1,5 @@
 function get_rhoa_phase(
-    u::Tuple{FESolution, FESolution}, f::Real, obs::Vector{Real}, ρ_field::FEFunction)
+    u::Tuple{SingleFieldFEFunction, SingleFieldFEFunction}, f::Real, obs::Vector{Real}, ρ_field::FEFunction)
     uh_e, uh_h = u
     μ₀ = pi * 4e-7
     rhoa = zeros(length(obs), 2)
