@@ -37,22 +37,28 @@ mutable struct ParameterFields
     ρ::FEFunction
 end
 
+export MT, FEProblem, ParameterFields
+
 include("dirichletBC.jl")
-include("gmsh.jl")
-include("rhoa.jl")
-include("utils.jl")
-include("fem.jl")
-include("solve.jl")
-include("grid.jl")
-
-export MT, FEProblem, ParameterFields, TensorGrid
-
-export loadModel, PrismGenerator, gmsh
 export dirichlet_hom_E, dirichlet_hom_H
-export FE_setup
-export createTensorGrid, createGrid, interpolate_grid_to_fe_space
+
+include("gmsh.jl")
+export loadModel, PrismGenerator, gmsh
+
+include("rhoa.jl")
 export get_rhoa_phase
-export solve_eh, solve_e, solve_h
+
+include("utils.jl")
 export getPT
+
+include("fem.jl")
+export FE_setup
+
+include("solve.jl")
+export solve_eh, solve_e, solve_h
+
+include("grid.jl")
+export TensorGrid
+export createTensorGrid, createGrid, interpolate_grid_to_fe_space
 
 end # module GridapMT
