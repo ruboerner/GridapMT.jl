@@ -53,6 +53,6 @@ export FE_setup
 export createTensorGrid, createGrid, interpolate_grid_to_fe_space
 export get_rhoa_phase
 export solve_eh, solve_e, solve_h
-
+export getPT
 
 end # module GridapMT
