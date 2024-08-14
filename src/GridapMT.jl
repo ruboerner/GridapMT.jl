@@ -26,13 +26,19 @@ end
 mutable struct MTdata
     freqs::Vector{Float64}
     obs::Vector{Float64}
+    npol::Int64
     rhoa::Array{Float64, 3}
     phase::Array{Float64, 3}
 end
 
-MTdata(freqs, obs) = MTdata(freqs, obs, 
+MTdata(freqs, obs) = MTdata(freqs, obs, 2,
     Array{Float64, 3}(undef, length(freqs), length(obs), 2), 
     Array{Float64, 3}(undef, (length(freqs), length(obs), 2)))
+
+MTdata(freqs, obs, n) = MTdata(freqs, obs, n,
+    Array{Float64, 3}(undef, length(freqs), length(obs), n), 
+    Array{Float64, 3}(undef, (length(freqs), length(obs), n)))
+
 
 mutable struct FEProblem
     order::Int
