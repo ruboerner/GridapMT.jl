@@ -23,6 +23,13 @@ mutable struct MT <: ForwardProblem
     # σ₀::Float64
 end
 
+mutable struct MTdata
+    freqs::Vector{Float64}
+    obs::Vector{Float64}
+    rhoa::Array{Float64, 3}
+    phase::Array{Float64, 3}
+end
+
 mutable struct FEProblem
     order::Int
     Vₑ
@@ -37,7 +44,7 @@ mutable struct ParameterFields
     ρ::FEFunction
 end
 
-export MT, FEProblem, ParameterFields
+export MT, MTdata, FEProblem, ParameterFields
 
 include("dirichletBC.jl")
 export dirichlet_hom_E, dirichlet_hom_H
