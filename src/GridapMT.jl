@@ -20,7 +20,7 @@ mutable struct MT <: ForwardProblem
     model::UnstructuredDiscreteModel
     freqs::Vector{Float64}
     obs::Vector{Float64}
-    σ₀::Float64
+    # σ₀::Float64
 end
 
 mutable struct FEProblem
