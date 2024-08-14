@@ -30,6 +30,10 @@ mutable struct MTdata
     phase::Array{Float64, 3}
 end
 
+MTdata(freqs, obs) = MTdata(freqs, obs, 
+    Array{Float64, 3}(undef, length(freqs), length(obs), 2), 
+    Array{Float64, 3}(undef, (length(freqs), length(obs), 2)))
+
 mutable struct FEProblem
     order::Int
     Vₑ
