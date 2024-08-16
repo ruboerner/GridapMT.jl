@@ -22,6 +22,8 @@ function PrismGenerator(L, H, x, lx, z, lz, lc, filename;
     gmsh.model.geo.addPoint(x + lx / 2, z + lz / 2, 0, lc, 9)
     gmsh.model.geo.addPoint(x + lx / 2, z - lz / 2, 0, lc, 10)
 
+
+
     gmsh.model.geo.synchronize()
 
     # Add lines
@@ -50,7 +52,7 @@ function PrismGenerator(L, H, x, lx, z, lz, lc, filename;
 	#
     gmsh.model.geo.addCurveLoop([1, 2, -7, 6], 1) # air
     gmsh.model.geo.addCurveLoop([7, 3, 4, 5], 2) # background
-    gmsh.model.geo.addCurveLoop([8, 9, 10, 11], 3) # prism
+    gmsh.model.geo.addCurveLoop([8, 9, 10, 11]; tag=3) # prism
 
     gmsh.model.geo.synchronize()
 
